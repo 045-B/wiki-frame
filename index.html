@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/gh/TetraTheta/RIDIBatang-subset/dist/style/RIDIBatang-subset-web.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/galmuri@2.40.3/dist/galmuri.css" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=wiki-frame-5">
+  <link rel="stylesheet" href="styles.css?v=wiki-frame-6">
 </head>
 <body>
   <header class="studio-bar">
@@ -28,10 +28,9 @@
         <label>포인트 색상<input type="color" id="accentInput"></label>
         <label>문서 배경색<input type="color" id="paperInput"></label>
         <label>폰트<select id="fontInput"><option value="pretendard">Pretendard</option><option value="noto">Noto Sans KR</option><option value="ridi">리디바탕</option><option value="galmuri">Galmuri</option></select></label>
-        <label>위키 이름<textarea class="line" id="brandInput" rows="1"></textarea></label>
+        <label>상단 위키 이름<textarea class="line" id="brandInput" rows="1"></textarea></label>
         <label>문서 제목<textarea class="line" id="titleInput" rows="1"></textarea></label>
         <label>부제목<textarea class="line" id="subtitleInput" rows="1"></textarea></label>
-        <label>문서 요약<textarea id="summaryInput" rows="5"></textarea></label>
       </div></details>
       <details open><summary><b>02</b> 정보상자</summary><div class="fields">
         <label class="upload">대표 이미지<input type="file" id="profileUpload" accept="image/*"><span>이미지 선택</span></label>
@@ -55,7 +54,7 @@
       <div class="sheet-frame">
         <article class="wiki-sheet" id="wikiSheet">
           <header class="wiki-topbar">
-            <div class="wiki-brand"><span class="wiki-mark">W</span><strong data-brand></strong></div>
+            <div class="wiki-brand"><strong data-brand></strong></div>
             <div class="wiki-search">문서 검색 <span>⌕</span></div>
             <nav><span>최근 변경</span><span>최근 토론</span><b>⋮</b></nav>
           </header>
@@ -63,11 +62,9 @@
             <div class="wiki-document">
               <div class="document-path"><span data-brand></span> / 문서</div>
               <div class="document-head"><div><h1 id="titleView"></h1><p id="subtitleView"></p></div><div class="document-tools"><span>★</span><span>역사</span><span>편집</span></div></div>
-              <div class="notice"><b>!</b><p id="summaryView"></p></div>
               <section class="summary-layout">
                 <div class="lead-copy summary-copy">
                   <nav class="contents-box"><strong>목차</strong><ol id="tocList"></ol></nav>
-                  <p id="leadText"></p>
                 </div>
                 <aside class="info-box">
                   <h2 id="infoNameView"></h2>
@@ -85,7 +82,7 @@
     </main>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-  <script src="app.js?v=wiki-frame-2"></script>
+  <script src="app.js?v=wiki-frame-3"></script>
 </body>
 </html>
 
