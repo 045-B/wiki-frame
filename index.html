@@ -7,8 +7,11 @@
   <title>WIKI FRAME — 위키 이미지 편집기</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=wiki-frame-1">
+  <link href="https://cdn.jsdelivr.net/gh/TetraTheta/RIDIBatang-subset/dist/style/RIDIBatang-subset-web.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/galmuri@2.40.3/dist/galmuri.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=wiki-frame-2">
 </head>
 <body>
   <header class="studio-bar">
@@ -24,6 +27,7 @@
       <details open><summary><b>01</b> 기본 설정</summary><div class="fields">
         <label>포인트 색상<input type="color" id="accentInput"></label>
         <label>문서 배경색<input type="color" id="paperInput"></label>
+        <label>폰트<select id="fontInput"><option value="pretendard">Pretendard</option><option value="noto">Noto Sans KR</option><option value="ridi">리디바탕</option><option value="galmuri">Galmuri</option></select></label>
         <label>위키 이름<textarea class="line" id="brandInput" rows="1"></textarea></label>
         <label>문서 제목<textarea class="line" id="titleInput" rows="1"></textarea></label>
         <label>부제목<textarea class="line" id="subtitleInput" rows="1"></textarea></label>
@@ -37,12 +41,10 @@
         <label>태그<textarea class="line" id="tagsInput" rows="1"></textarea></label>
       </div></details>
       <details open><summary><b>03</b> 본문</summary><div class="fields">
-        <label>첫 번째 목차<textarea class="line" id="sectionOneTitleInput" rows="1"></textarea></label>
-        <label>첫 번째 본문<textarea id="sectionOneBodyInput" rows="6"></textarea></label>
         <label class="upload">본문 이미지<input type="file" id="bodyUpload" accept="image/*"><span>이미지 선택</span></label>
         <label>이미지 설명<textarea class="line" id="captionInput" rows="1"></textarea></label>
-        <label>두 번째 목차<textarea class="line" id="sectionTwoTitleInput" rows="1"></textarea></label>
-        <label>두 번째 본문<textarea id="sectionTwoBodyInput" rows="6"></textarea></label>
+        <div id="sectionEditorList"></div>
+        <button class="add-section" id="addSectionButton" type="button">＋ 항목 추가</button>
       </div></details>
       <div class="image-help"><strong>이미지 조정</strong><p id="imageStatus">이미지를 선택하세요 · 드래그 이동 · 휠 확대/축소 · 방향키 미세조정</p></div>
     </aside>
@@ -62,7 +64,7 @@
               <div class="document-path"><span data-brand></span> / 문서</div>
               <div class="document-head"><div><h1 id="titleView"></h1><p id="subtitleView"></p></div><div class="document-tools"><span>★</span><span>역사</span><span>편집</span></div></div>
               <div class="notice"><b>!</b><p id="summaryView"></p></div>
-              <nav class="contents-box"><strong>목차</strong><ol><li><span>1.</span><a href="#section-one" id="tocOne"></a></li><li><span>2.</span><a href="#section-two" id="tocTwo"></a></li></ol></nav>
+              <nav class="contents-box"><strong>목차</strong><ol id="tocList"></ol></nav>
 
               <section class="lead-layout">
                 <div class="lead-copy"><p id="leadText"></p></div>
@@ -73,10 +75,7 @@
                 </aside>
               </section>
 
-              <section class="document-section" id="section-one"><h2><span>1.</span><b id="sectionOneTitleView"></b></h2><p id="sectionOneBodyView"></p>
-                <figure><div class="image-slot body-slot" data-image-slot="body"><span>본문 이미지</span></div><figcaption id="captionView"></figcaption></figure>
-              </section>
-              <section class="document-section" id="section-two"><h2><span>2.</span><b id="sectionTwoTitleView"></b></h2><p id="sectionTwoBodyView"></p></section>
+              <div id="sectionList"></div>
               <footer><span>이 문서는 사용자가 직접 만든 이미지 문서입니다.</span><b data-brand></b></footer>
             </div>
           </div>
@@ -85,7 +84,7 @@
     </main>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-  <script src="app.js?v=wiki-frame-1"></script>
+  <script src="app.js?v=wiki-frame-2"></script>
 </body>
 </html>
 
