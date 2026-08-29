@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="위키 문서처럼 편집하고 고해상도 PNG로 저장하는 이미지 편집기">
+  <title>WIKI FRAME — 위키 이미지 편집기</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=wiki-frame-1">
+</head>
+<body>
+  <header class="studio-bar">
+    <button class="mobile-toggle" id="mobileToggle" aria-expanded="false">☰ 설정</button>
+    <div><strong>WIKI FRAME</strong><span>위키 이미지 편집기</span></div>
+    <p>텍스트와 이미지를 편집한 뒤 한 장으로 저장하세요.</p>
+    <div class="studio-actions"><button id="resetButton">초기화</button><button class="save" id="saveButton">PNG 저장</button></div>
+  </header>
+
+  <div class="workspace">
+    <aside class="editor" id="editorPanel">
+      <div class="editor-heading"><div><span>DOCUMENT SETTINGS</span><h1>문서 편집</h1></div><button class="mobile-close" id="mobileClose" aria-label="설정 닫기">×</button></div>
+      <details open><summary><b>01</b> 기본 설정</summary><div class="fields">
+        <label>포인트 색상<input type="color" id="accentInput"></label>
+        <label>문서 배경색<input type="color" id="paperInput"></label>
+        <label>위키 이름<textarea class="line" id="brandInput" rows="1"></textarea></label>
+        <label>문서 제목<textarea class="line" id="titleInput" rows="1"></textarea></label>
+        <label>부제목<textarea class="line" id="subtitleInput" rows="1"></textarea></label>
+        <label>문서 요약<textarea id="summaryInput" rows="5"></textarea></label>
+      </div></details>
+      <details open><summary><b>02</b> 정보상자</summary><div class="fields">
+        <label class="upload">대표 이미지<input type="file" id="profileUpload" accept="image/*"><span>이미지 선택</span></label>
+        <label>표제<textarea class="line" id="infoNameInput" rows="1"></textarea></label>
+        <label>분류<textarea class="line" id="categoryInput" rows="1"></textarea></label>
+        <label>출처<textarea class="line" id="sourceInput" rows="1"></textarea></label>
+        <label>태그<textarea class="line" id="tagsInput" rows="1"></textarea></label>
+      </div></details>
+      <details open><summary><b>03</b> 본문</summary><div class="fields">
+        <label>첫 번째 목차<textarea class="line" id="sectionOneTitleInput" rows="1"></textarea></label>
+        <label>첫 번째 본문<textarea id="sectionOneBodyInput" rows="6"></textarea></label>
+        <label class="upload">본문 이미지<input type="file" id="bodyUpload" accept="image/*"><span>이미지 선택</span></label>
+        <label>이미지 설명<textarea class="line" id="captionInput" rows="1"></textarea></label>
+        <label>두 번째 목차<textarea class="line" id="sectionTwoTitleInput" rows="1"></textarea></label>
+        <label>두 번째 본문<textarea id="sectionTwoBodyInput" rows="6"></textarea></label>
+      </div></details>
+      <div class="image-help"><strong>이미지 조정</strong><p id="imageStatus">이미지를 선택하세요 · 드래그 이동 · 휠 확대/축소 · 방향키 미세조정</p></div>
+    </aside>
+    <button class="editor-backdrop" id="editorBackdrop" aria-label="설정 닫기"></button>
+
+    <main class="stage">
+      <div class="stage-note"><span>LIVE PREVIEW</span><p>이미지를 클릭한 뒤 직접 위치와 크기를 조절할 수 있습니다.</p></div>
+      <div class="sheet-frame">
+        <article class="wiki-sheet" id="wikiSheet">
+          <header class="wiki-topbar">
+            <div class="wiki-brand"><span class="wiki-mark">W</span><strong data-brand></strong></div>
+            <div class="wiki-search">문서 검색 <span>⌕</span></div>
+            <nav><span>최근 변경</span><span>최근 토론</span><b>⋮</b></nav>
+          </header>
+          <div class="wiki-layout">
+            <aside class="wiki-sidebar">
+              <div class="side-title"><span class="mini-mark">W</span><b data-brand></b></div>
+              <div class="side-search">검색</div>
+              <ul><li class="active">문서</li><li>역사</li><li>토론</li><li>분류</li></ul>
+              <p>도구</p><ul><li>역링크</li><li>관련 문서</li><li>파일 목록</li></ul>
+            </aside>
+            <div class="wiki-document">
+              <div class="document-path"><span data-brand></span> / 문서</div>
+              <div class="document-head"><div><h1 id="titleView"></h1><p id="subtitleView"></p></div><div class="document-tools"><span>★</span><span>역사</span><span>편집</span></div></div>
+              <div class="notice"><b>!</b><p id="summaryView"></p></div>
+              <nav class="contents-box"><strong>목차</strong><ol><li><span>1.</span><a href="#section-one" id="tocOne"></a></li><li><span>2.</span><a href="#section-two" id="tocTwo"></a></li></ol></nav>
+
+              <section class="lead-layout">
+                <div class="lead-copy"><p id="leadText"></p></div>
+                <aside class="info-box">
+                  <h2 id="infoNameView"></h2>
+                  <div class="image-slot profile-slot" data-image-slot="profile"><span>대표 이미지</span></div>
+                  <dl><div><dt>분류</dt><dd id="categoryView"></dd></div><div><dt>출처</dt><dd id="sourceView"></dd></div><div><dt>태그</dt><dd id="tagsView"></dd></div></dl>
+                </aside>
+              </section>
+
+              <section class="document-section" id="section-one"><h2><span>1.</span><b id="sectionOneTitleView"></b></h2><p id="sectionOneBodyView"></p>
+                <figure><div class="image-slot body-slot" data-image-slot="body"><span>본문 이미지</span></div><figcaption id="captionView"></figcaption></figure>
+              </section>
+              <section class="document-section" id="section-two"><h2><span>2.</span><b id="sectionTwoTitleView"></b></h2><p id="sectionTwoBodyView"></p></section>
+              <footer><span>이 문서는 사용자가 직접 만든 이미지 문서입니다.</span><b data-brand></b></footer>
+            </div>
+          </div>
+        </article>
+      </div>
+    </main>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="app.js?v=wiki-frame-1"></script>
+</body>
+</html>
