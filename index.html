@@ -12,14 +12,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/gh/TetraTheta/RIDIBatang-subset/dist/style/RIDIBatang-subset-web.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/galmuri@2.40.3/dist/galmuri.css" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=wiki-frame-24">
+  <link rel="stylesheet" href="styles.css?v=wiki-frame-25">
 </head>
 <body>
   <header class="studio-bar">
     <button class="mobile-toggle" id="mobileToggle" aria-expanded="false">☰ 설정</button>
     <div><strong>BREAD WIKI</strong><span>위키 이미지 편집기</span></div>
     <p>텍스트와 이미지를 편집한 뒤 한 장으로 저장하세요.</p>
-    <div class="studio-actions"><button id="resetButton">초기화</button><button class="save" id="saveButton">PNG 저장</button></div>
+    <div class="studio-actions"><button id="resetButton">초기화</button><button id="splitSaveButton">분할 PNG</button><button class="save" id="saveButton">PNG 저장</button></div>
   </header>
 
   <div class="workspace">
@@ -49,6 +49,10 @@
       <details open><summary><b>04</b> 추가 본문</summary><div class="fields">
         <div id="sectionEditorList"></div>
         <button class="add-section" id="addSectionButton" type="button">＋ 본문 상자 추가</button>
+      </div></details>
+      <details><summary><b>05</b> 분할 저장</summary><div class="fields">
+        <label>한 장당 높이(px)<input type="number" id="splitHeightInput" min="600" step="100" value="1800"></label>
+        <p class="save-help">긴 문서를 지정한 높이만큼 여러 PNG 파일로 나눠 저장합니다.</p>
       </div></details>
       <div class="image-help"><strong>이미지 조정</strong><p id="imageStatus">이미지를 선택하세요 · 드래그 이동 · 휠 확대/축소 · 방향키 미세조정</p></div>
     </aside>
@@ -86,7 +90,7 @@
     </main>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-  <script src="app.js?v=wiki-frame-21"></script>
+  <script src="app.js?v=wiki-frame-22"></script>
 </body>
 </html>
 
