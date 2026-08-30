@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/gh/TetraTheta/RIDIBatang-subset/dist/style/RIDIBatang-subset-web.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/galmuri@2.40.3/dist/galmuri.css" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=wiki-frame-11">
+  <link rel="stylesheet" href="styles.css?v=wiki-frame-12">
 </head>
 <body>
   <header class="studio-bar">
@@ -31,6 +31,7 @@
         <label>왼쪽 상단 위키 이름<textarea class="line" id="brandInput" rows="1"></textarea></label>
         <label>문서 제목<textarea class="line" id="titleInput" rows="1"></textarea></label>
         <label>부제목<textarea class="line" id="subtitleInput" rows="1"></textarea></label>
+        <label>목차 제목<textarea class="line" id="tocTitleInput" rows="1"></textarea></label>
       </div></details>
       <details open><summary><b>02</b> 정보상자</summary><div class="fields">
         <label class="upload">대표 이미지<input type="file" id="profileUpload" accept="image/*"><span>이미지 선택</span></label>
@@ -39,8 +40,8 @@
         <button class="add-section" id="addInfoRowButton" type="button">＋ 대표 정보 항목 추가</button>
       </div></details>
       <details open><summary><b>03</b> 본문</summary><div class="fields">
-        <label class="upload">본문 이미지<input type="file" id="bodyUpload" accept="image/*"><span>이미지 선택</span></label>
-        <label>이미지 설명<textarea class="line" id="captionInput" rows="1"></textarea></label>
+        <label class="upload">본문 이미지 여러 장<input type="file" id="bodyUpload" accept="image/*" multiple><span>이미지 선택 · 여러 장 가능</span></label>
+        <div id="bodyImageEditorList"></div>
         <div id="sectionEditorList"></div>
         <button class="add-section" id="addSectionButton" type="button">＋ 본문 상자 추가</button>
       </div></details>
@@ -63,7 +64,7 @@
               <div class="document-head"><div><h1 id="titleView"></h1><p id="subtitleView"></p></div><div class="document-tools"><span>★</span><span>역사</span><span>편집</span></div></div>
               <section class="summary-layout">
                 <div class="lead-copy summary-copy">
-                  <nav class="contents-box"><strong>목차</strong><ol id="tocList"></ol></nav>
+                  <nav class="contents-box"><strong id="tocTitleView"></strong><ol id="tocList"></ol></nav>
                 </div>
                 <aside class="info-box">
                   <h2 id="infoNameView"></h2>
@@ -81,7 +82,7 @@
     </main>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-  <script src="app.js?v=wiki-frame-5"></script>
+  <script src="app.js?v=wiki-frame-6"></script>
 </body>
 </html>
 
